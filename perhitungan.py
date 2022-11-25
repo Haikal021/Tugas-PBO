@@ -34,4 +34,4 @@ elif a == 3:
     print("Luas persegi adalah : " , hasil ," cm" )
 
 else :
-    print( a , "Tidak ada di dalam pilihan!")
+    print( a , "Tidak ada")

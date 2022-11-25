@@ -2,38 +2,36 @@
 # NIM   : D0221376
 # Kelas : Informatika H
 
-from bangundatar import *
 
-persegi = Persegi()
-lingkaran = Lingkaran()
-segitiga = Segitiga()
+def luas_lingkaran(r):
+    return 3.14*(r * r)
 
-luas = 0
-while True:
-    print()
-    print("""1. Hitung Luas persegi
-2. Hitung Luas Lingkaran
-3. Hitung Luas Segitiga
-4. Berhenti""")
-    pilihan = int(input("=> "))
+def luas_segitiga(alas, tinggi):
+    return 1/2 * alas * tinggi
 
-    if pilihan == 1:
-        persegi.sisi = float(input("Masukkan Sisi: "))
-        luas = persegi.luas()
-        
-    elif pilihan == 2:
-        lingkaran.jari = float(input("Masukkan Jari-jari: "))
-        luas = lingkaran.luas()
-        
-    elif pilihan == 3:
-        segitiga.alas = float(input("Masukkan Alas: "))
-        segitiga.tinggi = float(input("Masukkan Tinggi: "))
-        luas = segitiga.luas()
-    elif pilihan == 4:
-        break
-    else:
-        print("Periksa Kembali !")
-    
-    print("Luas: ", luas)
+def luas_persegi(sisi):
+    return sisi * sisi
 
-print("Selamat Tinggal")
+print('''1. Lingkaran
+2. Segitiga
+3. Persegi''')
+
+a = int(input("Masukkan luas bangun datar yang akan dicari : "))
+if a == 1:
+    r = float(input("Masukkan jari - jari : "))
+    hasil = luas_lingkaran(r)
+    print("Luas lingkaran adalah = " , hasil ," cm"  )
+
+elif a == 2:
+    alas = float(input("Masukkan alas segitiga : "))
+    tinggi = float(input("Masukkan tinggi segitiga : "))
+    hasil = luas_segitiga(alas, tinggi)
+    print("Luas segitiga adalah = " , hasil ," cm" )
+
+elif a == 3:
+    sisi = float(input("Masukkan sisi persegi: "))
+    hasil = luas_persegi(sisi)
+    print("Luas persegi adalah : " , hasil ," cm" )
+
+else :
+    print( a , "Tidak ada di dalam pilihan!")

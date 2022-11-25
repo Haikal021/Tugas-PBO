@@ -3,35 +3,67 @@
 # Kelas : Informatika H
 
 
-def luas_lingkaran(r):
-    return 3.14*(r * r)
+from abc import ABC, abstractmethod
 
-def luas_segitiga(alas, tinggi):
-    return 1/2 * alas * tinggi
 
-def luas_persegi(sisi):
-    return sisi * sisi
+from math import pi
 
-print('''1. Lingkaran
-2. Segitiga
-3. Persegi''')
+class BangunDatar(ABC):
+    @abstractmethod
+    def luas(self):
+        pass
 
-a = int(input("Masukkan luas bangun datar yang akan dicari : "))
-if a == 1:
-    r = float(input("Masukkan jari - jari : "))
-    hasil = luas_lingkaran(r)
-    print("Luas lingkaran adalah = " , hasil ," cm"  )
+class Lingkaran(BangunDatar):
+    def __init__(self, jari = 0):
+        self.jari = jari
 
-elif a == 2:
-    alas = float(input("Masukkan alas segitiga : "))
-    tinggi = float(input("Masukkan tinggi segitiga : "))
-    hasil = luas_segitiga(alas, tinggi)
-    print("Luas segitiga adalah = " , hasil ," cm" )
+    def luas(self):
+        return pi * (self.jari**2)
 
-elif a == 3:
-    sisi = float(input("Masukkan sisi persegi: "))
-    hasil = luas_persegi(sisi)
-    print("Luas persegi adalah : " , hasil ," cm" )
+class Persegi(BangunDatar):
+    def __init__(self, sisi = 0):
+        self.sisi = sisi
 
-else :
-    print( a , "Tidak ada")
+    def luas(self):
+        return self.sisi * self.sisi
+
+class Segitiga(BangunDatar):
+    def __init__(self, alas = 0, tinggi = 0):
+        self.alas = alas
+        self.tinggi = tinggi
+
+    def luas(self):
+        return 0.5 * self.alas * self.tinggi
+    
+    
+lingkaran = Lingkaran()
+segitiga = Segitiga()
+persegi = Persegi()
+luas = 0
+
+while True:
+    print()
+    print("""1. Hitung Luas Segitiga
+2. Hitung Luas Persegi
+3. Hitung Luas Lingkaran
+4. Berhenti""")
+    pilihan = int(input("=> "))
+
+    if pilihan == 1:
+        segitiga.alas = float(input("Masukkan Alas: "))
+        segitiga.tinggi = float(input("Masukkan Tinggi: "))
+        luas = segitiga.luas()
+    elif pilihan == 2:
+        persegi.sisi = float(input("Masukkan Sisi: "))
+        luas = persegi.luas()
+    elif pilihan == 3:
+        lingkaran.jari = float(input("Masukkan Jari-jari: "))
+        luas = lingkaran.luas()
+    elif pilihan == 4:
+        break
+    else:
+        print("Periksa Kembali Inputan!")
+    
+    print("Luas: ", luas)
+
+print("Selamat Tinggal")
